@@ -1,0 +1,221 @@
+:root {
+    --roxo-fundo: #2D0A31;
+    --roxo-card: #3d1442;
+    --sucesso: #00e676;
+    --detalhe: #FFD700;
+    --branco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--roxo-fundo);
+    margin: 0;
+    padding: env(safe-area-inset-top) 15px 40px 15px;
+    color: var(--branco);
+}
+
+.titulo {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    background: var(--roxo-card);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Deixar labels e títulos claros */
+h2,
+h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--detalhe);
+}
+
+p.grupo {
+    margin: 10px 0 5px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* INPUTS GRANDES PARA O DEDO */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    /* Evita zoom no iPhone */
+    margin-bottom: 15px;
+}
+
+/* TRANSFORMAR CHECKBOX EM BOTÃO CLICÁVEL */
+.secao label {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    margin: 5px 3px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+}
+
+/* Quando marcado, o botão de extra muda de cor */
+.secao input[type="checkbox"]:checked+span,
+.secao label:has(input:checked) {
+    background: var(--detalhe) !important;
+    color: black !important;
+    font-weight: bold;
+}
+
+/* ESCONDER O QUADRADINHO DO CHECKBOX PARA PARECER BOTÃO */
+.secao input[type="checkbox"] {
+    display: none;
+}
+
+/* BOTÃO PRINCIPAL DE VENDA */
+.btn.principal {
+    background: var(--sucesso);
+    color: #000;
+    padding: 18px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border-radius: 12px;
+    margin-top: 10px;
+    border: none;
+    width: 100%;
+}
+
+/* Ajuste do Histórico para não ficar gigante */
+.historico ul {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.historico li {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+/* Estilo para os Selects de Insumo e Ajuste */
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #3d1440;
+    /* Roxo escuro para combinar com o tema */
+    color: white;
+    border: 1px solid #6a1b9a;
+    border-radius: 8px;
+    font-size: 1rem;
+    appearance: none;
+    /* Remove a seta padrão do navegador */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
+    cursor: pointer;
+    outline: none;
+}
+
+select:focus {
+    border-color: #00e676;
+    /* Verde ao clicar */
+    box-shadow: 0 0 5px rgba(0, 230, 118, 0.3);
+}
+
+/* Estilização das Options (Funciona melhor no Windows/Android) */
+select option {
+    background-color: #2d0a31;
+    color: white;
+    padding: 10px;
+}
+
+.direitos-autorais {
+    margin-top: 40px;
+    padding: 30px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.2);
+    /* Um fundo sutil para separar do corpo */
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.autor {
+    color: #00e676;
+    /* Verde para destacar seu nome como desenvolvedor */
+    font-weight: bold;
+}
+
+.versao {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 2px 8px;
+    background: #6a1b9a;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    color: white;
+    opacity: 0.8;
+}
+
+.main-header {
+    background-color: #000000;
+    padding: 20px 0;
+    border-bottom: 3px solid #ff9800;
+    /* Linha Neon Laranja */
+    margin-bottom: 30px;
+    border-radius: 0 0 15px 15px;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.logo-top {
+    height: 250px;
+    /* Ajustado para um tamanho equilibrado */
+    width: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 152, 0, 0.5));
+}
+
+.btn-whatsapp:hover {
+    background: #128c7e !important;
+    transform: scale(1.02);
+    transition: 0.2s;
+}

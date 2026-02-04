@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Nova Origem Açaí</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#2D0A31">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <img src="./WhatsApp Image 2026-02-04 at 02.49.37.jpeg" alt="Logo F&B" class="logo-top">
+            <h1 class="brand-name">Gestão De Negocio - Nova Origem</h1>
+        </div>
+    </header>
+
+    <h1 class="titulo">Controle</h1>
+
+    <button id="btnInstalar" style="display:none;" class="btn principal">
+        📲 Instalar App no Celular
+    </button>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>📊 Fluxo de Caixa</h2>
+            <div class="resumo">
+                <p>Dinheiro em Caixa (Bruto): <span>R$ <b id="totalVendas">0.00</b></span></p>
+                <p>Investimento em Produtos: <span>R$ <b id="totalGastos">0.00</b></span></p>
+                <p>Saldo (Lucro Real): <span>R$ <b id="lucro">0.00</b></span></p>
+
+                <div id="metaStatus" class="alerta-neutro">Aguardando vendas...</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📦 Gestão de Insumos</h2>
+            <p>Estoque Atual (Açaí): <b id="qtdEstoque">0.00 kg</b></p>
+            <p>Rendimento Restante: <b id="previsaoEstoque">0 copos</b></p>
+        </div>
+
+        <div class="card destaque">
+            <h2>🥤 Registrar Venda</h2>
+
+            <button class="btn promo" onclick="togglePromo()">Ativar Promoção</button>
+
+            <div class="secao">
+                <label class="label-button">
+                    <input type="checkbox" id="tradicional" checked disabled>
+                    <span>Copo Padrão (280g)</span>
+                </label>
+            </div>
+
+            <div class="secao">
+                <h3>Cliente</h3>
+                <input type="text" id="nomeCliente" placeholder="Nome do cliente (opcional)">
+            </div>
+
+            <div class="secao">
+                <h3>Forma de Pagamento</h3>
+                <select id="formaPagamento">
+                    <option value="dinheiro">💵 Dinheiro</option>
+                    <option value="pix">💎 Pix</option>
+                    <option value="debito">💳 Cartão Débito</option>
+                    <option value="credito">💳 Cartão Crédito</option>
+                </select>
+            </div>
+
+            <div class="secao">
+                <h3>Escolha os Extras</h3>
+
+                <p class="grupo">R$4</p>
+                <label class="label-button"><input type="checkbox" class="extra4"
+                        value="nutella"><span>Nutella</span></label>
+
+                <p class="grupo">R$3</p>
+                <label class="label-button"><input type="checkbox" class="extra3" value="ouroBranco"><span>Ouro
+                        Branco</span></label>
+                <label class="label-button"><input type="checkbox" class="extra3" value="sonhoValsa"><span>Sonho de
+                        Valsa</span></label>
+                <label class="label-button"><input type="checkbox" class="extra3"
+                        value="kitkat"><span>KitKat</span></label>
+
+                <p class="grupo">R$2</p>
+                <label class="label-button"><input type="checkbox" class="extra2"
+                        value="pacoca"><span>Paçoca</span></label>
+                <label class="label-button"><input type="checkbox" class="extra2"
+                        value="granola"><span>Granola</span></label>
+                <label class="label-button"><input type="checkbox" class="extra2"
+                        value="disquete"><span>Disquete</span></label>
+            </div>
+            <div class="campo-qtd">
+                <label for="quantidadeCopos">Quantidade de Copos:</label>
+                <input type="number" id="quantidadeCopos" value="1" min="1" style="width: 60px; text-align: center;">
+            </div>
+
+            <button class="btn principal" onclick="registrarVenda()">✅ FINALIZAR VENDA</button>
+        </div>
+
+        <div class="card">
+            <h2>💸 Entrada de Estoque</h2>
+            <p style="font-size: 0.8rem; opacity: 0.7; margin-bottom: 10px;">Selecione o produto para abastecer o
+                estoque.</p>
+
+            <select id="selecaoInsumo">
+                <option value="acai">💜 Açaí (kg)</option>
+                <option value="nutella">🍫 Nutella (g)</option>
+                <option value="ouroBranco">🍬 Ouro Branco (g)</option>
+                <option value="sonhoValsa">🍬 Sonho de Valsa (g)</option>
+                <option value="disquete">🌈 Disquete (g)</option>
+                <option value="granola">🌾 Granola (g)</option>
+                <option value="ovomaltine">🍫 Ovomaltine (g)</option>
+                <option value="banana">🍌 Banana (g)</option>
+                <option value="kitkat">🍫 KitKat (Unid)</option>
+                <option value="leitePo">⚪ Leite em Pó (g)</option>
+                <option value="leiteCondensado">🥛 Leite Condensado (g)</option>
+            </select>
+            <input type="number" id="valorGasto" placeholder="Valor pago R$">
+            <input type="number" id="qtdEntrada" placeholder="Quantidade (kg, g ou unid)">
+
+            <button class="btn principal" onclick="registrarEntradaEstoque()" style="background: #6a1b9a;">ADICIONAR AO
+                ESTOQUE</button>
+        </div>
+
+        <div class="card">
+            <h2>📋 Inventário e Rendimento</h2>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+                <p style="font-size: 0.8rem; margin-bottom: 5px;">🔧 Ajuste Manual (Corrigir Estoque):</p>
+                <div style="display: flex; gap: 5px;">
+                    <select id="ajusteInsumo" style="flex: 1; padding: 5px;">
+                        <option value="acai">Açaí</option>
+                        <option value="nutella">Nutella</option>
+                        <option value="ouroBranco">Ouro Branco</option>
+                        <option value="sonhoValsa">Sonho de Valsa</option>
+                        <option value="kitkat">KitKat</option>
+                        <option value="banana">Banana</option>
+                        <option value="disquete">Disquete</option>
+                        <option value="granola">Granola</option>
+                        <option value="ovomaltine">Ovomaltine</option>
+                        <option value="leitePo">Leite em Pó (g)</option>
+                        <option value="leiteCondensado">Leite Condensado (g)</option>
+                    </select>
+                    <input type="number" id="novaQtd" placeholder="Qtd Real" style="width: 80px; padding: 5px;">
+                    <button onclick="ajustarEstoqueManual()"
+                        style="background: #2196F3; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Ok</button>
+                </div>
+            </div>
+
+            <ul id="listaInsumos" style="list-style: none; padding: 0;">
+            </ul>
+        </div>
+        <div class="card">
+            <h2>📋 Inventário e Rendimento</h2>
+            <p style="font-size: 0.8rem; opacity: 0.7; margin-bottom: 10px;">
+                Quantidade atual e previsão de quantos copos você ainda consegue atender.
+            </p>
+            <ul id="listaInsumos" style="list-style: none; padding: 0;">
+            </ul>
+        </div>
+        <div class="card">
+            <h2>🏭 Produção do Dia</h2>
+            <p>Copos vendidos hoje: <b id="coposHoje">0</b></p>
+            <p>Média de Lucro Prevista: <b>R$ <span id="previsao">0.00</span></b></p>
+        </div>
+
+        <div class="card historico">
+            <h2>🧾 Últimas Vendas</h2>
+            <ul id="historico"></ul>
+        </div>
+
+        <div class="card">
+            <h2>🏆 Ranking de Lucro (Extras)</h2>
+            <ul id="rankingExtras"></ul>
+        </div>
+
+        <div class="card" style="background: transparent; box-shadow: none;">
+            <button class="btn fechar" onclick="fecharDia()"
+                style="background: #ff5252; color: white; padding: 20px; border-radius: 12px; font-weight: bold;">📊
+                FECHAR CAIXA E GERAR PDF</button>
+        </div>
+        <button onclick="enviarRelatorioWhatsApp()" class="btn-whatsapp"
+            style="background: #25d366; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; width: 100%; margin-top: 10px; cursor: pointer;">
+            Send Relatório Diário (WhatsApp) 📱
+        </button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+    <footer class="direitos-autorais">
+        <div class="footer-content">
+            <p>&copy; 2024 - 2026 <b>Gestão De Negocio, Nova Origem</b></p>
+            <p>Desenvolvido por <a href="https://wa.me/5534997741051" target="_blank" class="autor">Jean Reis</a></p>
+            <div class="versao">v2.4.0</div>
+        </div>
+    </footer>
+</body>
+
+</html>

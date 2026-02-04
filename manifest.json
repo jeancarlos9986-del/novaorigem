@@ -1,0 +1,20 @@
+{
+  "name": "Gestão Nova Origem",
+  "short_name": "Nova Origem",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6a0dad",
+  "icons": [
+    {
+      "src": "./WhatsApp Image 2026-02-04 at 02.49.37.jpeg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./WhatsApp Image 2026-02-04 at 02.54.27.jpeg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
