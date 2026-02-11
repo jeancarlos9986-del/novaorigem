@@ -32,13 +32,28 @@
     <div class="container">
 
         <div class="card">
-            <h2>📊 Fluxo de Caixa</h2>
+            <h2>📊 Performance de Lucro</h2>
             <div class="resumo">
                 <p>Dinheiro em Caixa (Bruto): <span>R$ <b id="totalVendas">0.00</b></span></p>
                 <p>Investimento em Produtos: <span>R$ <b id="totalGastos">0.00</b></span></p>
-                <p>Saldo (Lucro Real): <span>R$ <b id="lucro">0.00</b></span></p>
+                <p
+                    style="color: #00e676; font-size: 1.2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; margin-top: 10px;">
+                    Lucro Real (Líquido): <span>R$ <b id="lucro">0.00</b></span>
+                </p>
 
-                <div id="metaStatus" class="alerta-neutro">Aguardando vendas...</div>
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; text-align: center;">
+                    <div>
+                        <p style="font-size: 0.7rem; margin: 0; opacity: 0.8;">Margem de Lucro</p>
+                        <span style="color: #FFD700; font-weight: bold;"><b id="margemLucro">0</b>%</span>
+                    </div>
+                    <div>
+                        <p style="font-size: 0.7rem; margin: 0; opacity: 0.8;">Ticket Médio</p>
+                        <span style="color: #FFD700; font-weight: bold;">R$ <b id="ticketMedio">0.00</b></span>
+                    </div>
+                </div>
+
+                <div id="metaStatus" class="alerta-neutro" style="margin-top: 10px;">Aguardando vendas...</div>
             </div>
         </div>
 
@@ -54,7 +69,15 @@
             <button class="btn promo" onclick="togglePromo()">Ativar Promoção</button>
 
             <div class="secao">
-                <label class="label-button">
+                <h3>Produto / Tamanho</h3>
+                <select id="tipoProduto" class="input-field"
+                    style="width: 100%; padding: 12px; border-radius: 8px; background: #2D0A31; color: white; border: 1px solid #555;">
+                    <option value="copo400">🥤 Copo 400ml - R$ 17,00</option>
+                    <option value="copo500">🥤 Copo 500ml - R$ 20,00</option>
+                    <option value="shakeSimples">🍼 Shake Açaí - R$ 16,00</option>
+                    <option value="shakePacoca">🍼 Shake c/ Paçoca - R$ 18,00</option>
+                </select>
+                <label class="label-button" style="margin-top: 10px; display: none;">
                     <input type="checkbox" id="tradicional" checked disabled>
                     <span>Copo Padrão (280g)</span>
                 </label>
@@ -78,6 +101,14 @@
             <div class="secao">
                 <h3>Escolha os Extras</h3>
 
+                <p class="grupo">Grátis / Inclusos</p>
+                <label class="label-button"><input type="checkbox" class="extraGratis" value="morango"><span>🍓
+                        Morango</span></label>
+                <label class="label-button"><input type="checkbox" class="extraGratis" value="banana"><span>🍌
+                        Banana</span></label>
+                <label class="label-button"><input type="checkbox" class="extraGratis" value="granola"><span>🌾
+                        Granola</span></label>
+
                 <p class="grupo">R$4</p>
                 <label class="label-button"><input type="checkbox" class="extra4"
                         value="nutella"><span>Nutella</span></label>
@@ -97,9 +128,11 @@
                         value="granola"><span>Granola</span></label>
                 <label class="label-button"><input type="checkbox" class="extra2"
                         value="disquete"><span>Disquete</span></label>
+                <label class="label-button"><input type="checkbox" class="extra2"
+                        value="ovomaltine"><span>Ovomaltine</span></label>
             </div>
             <div class="campo-qtd">
-                <label for="quantidadeCopos">Quantidade de Copos:</label>
+                <label for="quantidadeCopos">Quantidade:</label>
                 <input type="number" id="quantidadeCopos" value="1" min="1" style="width: 60px; text-align: center;">
             </div>
 
@@ -113,6 +146,7 @@
 
             <select id="selecaoInsumo">
                 <option value="acai">💜 Açaí (kg)</option>
+                <option value="morango">🍓 Morango (g)</option>
                 <option value="nutella">🍫 Nutella (g)</option>
                 <option value="ouroBranco">🍬 Ouro Branco (g)</option>
                 <option value="sonhoValsa">🍬 Sonho de Valsa (g)</option>
@@ -121,6 +155,7 @@
                 <option value="ovomaltine">🍫 Ovomaltine (g)</option>
                 <option value="banana">🍌 Banana (g)</option>
                 <option value="kitkat">🍫 KitKat (Unid)</option>
+                <option value="pacoca">🥜 Paçoca (Unid)</option>
                 <option value="leitePo">⚪ Leite em Pó (g)</option>
                 <option value="leiteCondensado">🥛 Leite Condensado (g)</option>
             </select>
@@ -139,10 +174,12 @@
                 <div style="display: flex; gap: 5px;">
                     <select id="ajusteInsumo" style="flex: 1; padding: 5px;">
                         <option value="acai">Açaí</option>
+                        <option value="morango">Morango</option>
                         <option value="nutella">Nutella</option>
                         <option value="ouroBranco">Ouro Branco</option>
                         <option value="sonhoValsa">Sonho de Valsa</option>
                         <option value="kitkat">KitKat</option>
+                        <option value="pacoca">Paçoca</option>
                         <option value="banana">Banana</option>
                         <option value="disquete">Disquete</option>
                         <option value="granola">Granola</option>
@@ -159,17 +196,19 @@
             <ul id="listaInsumos" style="list-style: none; padding: 0;">
             </ul>
         </div>
+
         <div class="card">
-            <h2>📋 Inventário e Rendimento</h2>
+            <h2>📋 Inventário e Rendimento (Detalhado)</h2>
             <p style="font-size: 0.8rem; opacity: 0.7; margin-bottom: 10px;">
                 Quantidade atual e previsão de quantos copos você ainda consegue atender.
             </p>
-            <ul id="listaInsumos" style="list-style: none; padding: 0;">
+            <ul id="listaInsumosDuplicado" style="list-style: none; padding: 0;">
             </ul>
         </div>
+
         <div class="card">
             <h2>🏭 Produção do Dia</h2>
-            <p>Copos vendidos hoje: <b id="coposHoje">0</b></p>
+            <p>Itens vendidos hoje: <b id="coposHoje">0</b></p>
             <p>Média de Lucro Prevista: <b>R$ <span id="previsao">0.00</span></b></p>
         </div>
 
@@ -185,12 +224,13 @@
 
         <div class="card" style="background: transparent; box-shadow: none;">
             <button class="btn fechar" onclick="fecharDia()"
-                style="background: #ff5252; color: white; padding: 20px; border-radius: 12px; font-weight: bold;">📊
+                style="background: #ff5252; color: white; padding: 20px; border-radius: 12px; font-weight: bold; width: 100%;">📊
                 FECHAR CAIXA E GERAR PDF</button>
         </div>
+
         <button onclick="enviarRelatorioWhatsApp()" class="btn-whatsapp"
-            style="background: #25d366; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; width: 100%; margin-top: 10px; cursor: pointer;">
-            Send Relatório Diário (WhatsApp) 📱
+            style="background: #25d366; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: bold; width: 100%; margin-top: 10px; cursor: pointer;">
+            ENVIAR RELATÓRIO DIÁRIO (WHATSAPP) 📱
         </button>
     </div>
 
@@ -200,7 +240,7 @@
         <div class="footer-content">
             <p>&copy; 2024 - 2026 <b>Gestão De Negocio, Nova Origem</b></p>
             <p>Desenvolvido por <a href="https://wa.me/5534997741051" target="_blank" class="autor">Jean Reis</a></p>
-            <div class="versao">v2.4.0</div>
+            <div class="versao">v2.5.0</div>
         </div>
     </footer>
 </body>
